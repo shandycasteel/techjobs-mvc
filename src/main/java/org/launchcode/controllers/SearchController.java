@@ -22,6 +22,7 @@ public class SearchController {
     @RequestMapping(value = "")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
+        model.addAttribute("searchType", "all");
         return "search";
     }
 
@@ -44,6 +45,7 @@ public class SearchController {
             } else {
                 model.addAttribute("title", "Showing " + jobs.size() + " " + searchTerm + " Results From All Categories:");
                 model.addAttribute("jobs", jobs);
+                model.addAttribute("searchType", searchType);
 
                 return "search";
             }
@@ -57,6 +59,7 @@ public class SearchController {
             } else {
                 model.addAttribute("title", "Showing " + jobs.size() + " " +  searchTerm + "  results from the " + searchType + " Column:");
                 model.addAttribute("jobs", jobs);
+                model.addAttribute("searchType", searchType);
 
                 return "search";
             }
