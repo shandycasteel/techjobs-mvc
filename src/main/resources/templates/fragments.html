@@ -20,8 +20,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a th:href="@{/search}">Search</a></li>
-                    <li><a th:href="@{/list}">List</a></li>
+                    <li th:each="action : ${actions}">
+                        <a th:href="@{'/' + ${action.key}}" th:text="${action.value}"></a> -->
+                    </li>
                 </ul>
             </div>
         </div>
@@ -33,7 +34,12 @@
 
         <tr th:each="jobRow : ${job.entrySet()}">
             <td th:text="${#strings.capitalizeWords(jobRow.key)}"></td>
-            <td th:text="${jobRow.value}"></td>
+            <td>
+                <span th:if="${jobRow.key} == 'name'" th:text="${jobRow.value}"></span>
+                <span th:unless="${jobRow.key} == 'name'">
+                    <a th:href="@{/list/jobs(column=${jobRow.key}, value=${jobRow.value})}" th:text="${jobRow.value}"></a>
+                </span>
+            </td>
         </tr>
         <br />
     </table>
