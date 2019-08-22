@@ -27,5 +27,16 @@
         </div>
     </div>
 
+
+    // Fragment for displaying jobs in search and all columns view
+    <table th:fragment="display-jobs" th:each="job : ${jobs}" class="job-listing">
+
+        <tr th:each="jobRow : ${job.entrySet()}">
+            <td th:text="${#strings.capitalizeWords(jobRow.key)}"></td>
+            <td th:text="${jobRow.value}"></td>
+        </tr>
+        <br />
+    </table>
+
 </body>
 </html>
